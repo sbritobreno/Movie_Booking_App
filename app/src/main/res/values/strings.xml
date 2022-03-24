@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Movie Booking App</string>
+    <string name="spiderManDescription">\u0009 Peter Parker is beset with troubles in his failing personal life as he battles a brilliant scientist named Doctor Otto Octavius.</string>
+    <string name="intoTheWildDescription2">\u0009 After graduating from Emory University, top student and athlete Christopher McCandless abandons his possessions, gives his entire $24,000 savings account to charity and hitchhikes to Alaska to live in the wilderness. Along the way, Christopher encounters a series of characters that shape his life.</string>
+    <string name="AvengersDescription">\u0009 Nick Fury of S.H.I.E.L.D. assembles a team of superheroes to save the planet from Loki and his army.</string>
+    <string name="theBoyInTheStripedPajamasDescription">Set during World War II, a story n through the innocent eyes of Bruno, the eight-year-old son of the commandant at a concentration camp, whose forbidden friendship with a Jewish boy on the other side of the camp fence has startling and unexpected consequences.</string>
+
 </resources>
