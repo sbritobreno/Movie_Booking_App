@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="300dp"
             android:layout_margin="5dp"
-            android:src="@drawable/intothewild"/>
+            android:src="@drawable/movie_img_template"/>
     </LinearLayout>
 
     <LinearLayout
@@ -33,62 +33,58 @@
             android:id="@+id/MovieTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Into The Wild"
+            android:text="MovieTitle"
+            android:textColor="@color/white"
             android:textSize="24sp"
-            android:textColor="@color/white" />
-
-        <TextView
-            android:id="@+id/MovieDescription"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="After graduating from Emory University, top student and athlete Christopher McCandless abandons his possessions, gives his entire $24,000 savings account to charity and hitchhikes to Alaska to live in the wilderness. Along the way, Christopher encounters a series of characters that shape his life."
-            android:textSize="14sp"
-            android:textColor="@color/white" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_margin="10dp">
+            android:textStyle="bold" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:gravity="left">
+            android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/SelectSeats"
+                android:id="@+id/MovieStarring"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Select Seats"
-                android:textSize="18dp"
-                android:textColor="@color/white" />
-
-
-            <ImageView
-                android:id="@+id/AddSeat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="5dp"
-                app:srcCompat="@drawable/ic_baseline_remove_24" />
+                android:text="Starring :"
+                android:textSize="14sp"
+                android:textColor="@color/white"
+                android:textStyle="bold"/>
 
             <TextView
-                android:id="@+id/NumberOfSelectedSeats"
+                android:id="@+id/MovieStarringData"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0"
-                android:textSize="18dp"
+                android:text="MovieStarring"
+                android:textSize="14sp"
+                android:paddingHorizontal="5dp"
                 android:textColor="@color/white" />
 
-            <ImageView
-                android:id="@+id/removeSeat"
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/MovieDuration"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="5dp"
-                app:srcCompat="@drawable/ic_baseline_add_24" />
+                android:text="Duration :"
+                android:textSize="14sp"
+                android:textColor="@color/white"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/MovieDurationData"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MovieDuration"
+                android:textSize="14sp"
+                android:paddingHorizontal="5dp"
+                android:textColor="@color/white" />
 
         </LinearLayout>
 
@@ -96,6 +92,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:paddingVertical="5dp"
             android:layout_gravity="right">
 
             <ImageView
@@ -115,7 +112,7 @@
                 android:textColor="@color/white" />
 
             <TextView
-                android:id="@+id/RemainingSeats"
+                android:id="@+id/RemainingSeatsText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Remaining Seats"

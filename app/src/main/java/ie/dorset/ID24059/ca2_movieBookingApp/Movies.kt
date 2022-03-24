@@ -4,10 +4,12 @@ class Movies {
     var name: String = "No movie name"
     var image: String = "No movie img"
     var description: String = "No movie description"
-    var seats_remaining: Int = 15
-    var seats_selected: Int = 0
+    var starring: Array<String?> = emptyArray()
+    var running_time_mins: Int = 0
+    var seatsRemaining: Int = 15
+    var seatsSelected: Int = 0
 
     override fun toString(): String {
-        return "$name, $image, $description, $seats_remaining, $seats_selected"
+        return "$name, $image, $description, $starring, $running_time_mins $seatsRemaining, $seatsSelected"
     }
 }
