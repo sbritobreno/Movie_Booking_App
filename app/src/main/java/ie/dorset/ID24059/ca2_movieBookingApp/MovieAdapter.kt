@@ -1,5 +1,7 @@
 package ie.dorset.ID24059.ca2_movieBookingApp
 
+import android.content.Intent
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,25 +9,31 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
+
 class MovieAdapter: RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
 
     private var name = arrayOf("Into The Wild", "The Boy in the Striped Pajamas", "The Avengers", "Spider_Man 2")
     private var starring = arrayOf("Emile Hirsch, Vince Vaughn", "Asa Butterfield, Jack Scanlon", "Robert Downey, Scarlett Johansson", "Tobey Maguire, Kirsten Dunst")
     private var running_time_mins = arrayOf("2h 28m", "1h 34m", "2h 23m", "2h 7m")
-    private var seatsRemaining = arrayOf("15", "15", "15", "15")
-    private val image = intArrayOf(R.drawable.intothewildimg, R.drawable.theboyinthestripedpajamas, R.drawable.theavengers, R.drawable.spiderman2)
+    private var seatsRemaining = arrayOf(15,15,15,15)
+    private val image = intArrayOf(
+        R.drawable.intothewildimg,
+        R.drawable.theboyinthestripedpajamas,
+        R.drawable.theavengers,
+        R.drawable.spiderman2
+    )
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.movie_recycler_template,parent,false)
         return ViewHolder(v)
     }
 
-    override fun onBindViewHolder(holder: MovieAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.name.text = name[position]
         holder.starring.text = starring[position]
         holder.running_time_mins.text = running_time_mins[position]
-        holder.seatsRemaining.text = seatsRemaining[position]
+        holder.seatsRemaining.text = seatsRemaining[position].toString()
         holder.image.setImageResource(image[position])
     }
 
@@ -47,6 +55,22 @@ class MovieAdapter: RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
             starring = itemView.findViewById(R.id.MovieStarringData)
             running_time_mins = itemView.findViewById(R.id.MovieDurationData)
             seatsRemaining = itemView.findViewById(R.id.NumberOfRemainingSeats)
+
+            itemView.setOnClickListener{
+                val position: Int = adapterPosition
+
+                val intent = Intent(itemView.context, MovieActivity::class.java)
+                val extras = Bundle()
+                extras.putString("Position", position.toString())
+                extras.putString("Image", itemView.findViewById(R.id.MovieImage))
+                extras.putString("Title", itemView.findViewById(R.id.MovieTitle))
+                extras.putString("Starring", itemView.findViewById(R.id.MovieStarringData))
+                extras.putString("Running_time_mins", itemView.findViewById(R.id.MovieDurationData))
+                extras.putString("SeatsRemaining", itemView.findViewById(R.id.NumberOfRemainingSeats))
+                intent.putExtras(extras)
+                itemView.context.startActivity(intent)
+            }
+
         }
     }
 }

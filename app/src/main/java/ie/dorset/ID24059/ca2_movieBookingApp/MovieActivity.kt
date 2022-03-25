@@ -1,29 +1,17 @@
 package ie.dorset.ID24059.ca2_movieBookingApp
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageButton
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import ie.dorset.ID24059.ca2_movieBookingApp.MovieAdapter
-import kotlinx.android.synthetic.main.activity_main.*
+import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_movie.*
+import java.time.Duration
 
-class MainActivity : AppCompatActivity() {
-
-    private var layoutManager: RecyclerView.LayoutManager? = null
-    private var adapter:RecyclerView.Adapter<MovieAdapter.ViewHolder>? = null
-
+class MovieActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        layoutManager = LinearLayoutManager(this)
-
-        movies_recycler_view.layoutManager = layoutManager
-
-        adapter = MovieAdapter()
-        movies_recycler_view.adapter = adapter
+        setContentView(R.layout.activity_movie)
 
         val exitBtn = findViewById<ImageButton>(R.id.exitIcon)
         exitBtn.setOnClickListener{
@@ -40,6 +28,16 @@ class MainActivity : AppCompatActivity() {
             }
             val createBuild = eBuilder.create()
             createBuild.show()
+
+            val extras = intent.extras
+            val index = extras!!.getString("Position")
+            val title = extras.getString("Title")
+            val img = extras.getString("Image")
+            val starring = extras.getString("Starring")
+            val duration = extras.getString("Duration")
+            val seatsRem = extras.getString("SeatsRemaining")
+
+            selectedMovieImage.ImageView = img
         }
     }
 }
