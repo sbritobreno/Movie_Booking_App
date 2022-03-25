@@ -44,8 +44,8 @@ class MovieAdapter: RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
         init{
             name = itemView.findViewById(R.id.MovieTitle)
             image = itemView.findViewById(R.id.MovieImage)
-            starring = itemView.findViewById(R.id.MovieStarring)
-            running_time_mins = itemView.findViewById(R.id.MovieDuration)
+            starring = itemView.findViewById(R.id.MovieStarringData)
+            running_time_mins = itemView.findViewById(R.id.MovieDurationData)
             seatsRemaining = itemView.findViewById(R.id.NumberOfRemainingSeats)
         }
     }
