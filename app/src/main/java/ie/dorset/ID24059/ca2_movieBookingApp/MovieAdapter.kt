@@ -8,69 +8,50 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.activity_movie.view.*
+import kotlinx.android.synthetic.main.movie_recycler_template.view.*
+import kotlinx.android.synthetic.main.movie_recycler_template.view.NumberOfRemainingSeats
 
 
-class MovieAdapter: RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
-
-    private var name = arrayOf("Into The Wild", "The Boy in the Striped Pajamas", "The Avengers", "Spider_Man 2")
-    private var starring = arrayOf("Emile Hirsch, Vince Vaughn", "Asa Butterfield, Jack Scanlon", "Robert Downey, Scarlett Johansson", "Tobey Maguire, Kirsten Dunst")
-    private var running_time_mins = arrayOf("2h 28m", "1h 34m", "2h 23m", "2h 7m")
-    private var seatsRemaining = arrayOf(15,15,15,15)
-    private val image = intArrayOf(
-        R.drawable.intothewildimg,
-        R.drawable.theboyinthestripedpajamas,
-        R.drawable.theavengers,
-        R.drawable.spiderman2
-    )
+class MovieAdapter(var items: ArrayList<Movie>, var clickListner: onItemClickListener): RecyclerView.Adapter<MovieViewHolder>() {
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.movie_recycler_template,parent,false)
-        return ViewHolder(v)
+        return MovieViewHolder(v)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.name.text = name[position]
-        holder.starring.text = starring[position]
-        holder.running_time_mins.text = running_time_mins[position]
-        holder.seatsRemaining.text = seatsRemaining[position].toString()
-        holder.image.setImageResource(image[position])
+    override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
+        holder.initialize(items.get(position),clickListner)
     }
 
     override fun getItemCount(): Int {
-        return name.size
+        return items.size
     }
+}
 
-    inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
+class MovieViewHolder(itemView:View) : RecyclerView.ViewHolder(itemView){
 
-        var name: TextView
-        var image: ImageView
-        var starring: TextView
-        var running_time_mins: TextView
-        var seatsRemaining: TextView
+    var name = itemView.MovieTitle
+    var image = itemView.MovieImage
+    var starring = itemView.MovieStarring
+    var running_time_mins = itemView.MovieDuration
+    var seatsRemaining = itemView.NumberOfRemainingSeats
 
-        init{
-            name = itemView.findViewById(R.id.MovieTitle)
-            image = itemView.findViewById(R.id.MovieImage)
-            starring = itemView.findViewById(R.id.MovieStarringData)
-            running_time_mins = itemView.findViewById(R.id.MovieDurationData)
-            seatsRemaining = itemView.findViewById(R.id.NumberOfRemainingSeats)
+    fun initialize(item: Movie, action: onItemClickListener){
+        name.text = item.name
+        image.setImageResource(item.image)
+        starring.text = item.starring
+        running_time_mins.text = item.running_time_mins
+        seatsRemaining.text = item.seatsRemaining.toString()
 
-            itemView.setOnClickListener{
-                val position: Int = adapterPosition
-
-                val intent = Intent(itemView.context, MovieActivity::class.java)
-                val extras = Bundle()
-                extras.putString("Position", position.toString())
-                extras.putString("Image", itemView.findViewById(R.id.MovieImage))
-                extras.putString("Title", itemView.findViewById(R.id.MovieTitle))
-                extras.putString("Starring", itemView.findViewById(R.id.MovieStarringData))
-                extras.putString("Running_time_mins", itemView.findViewById(R.id.MovieDurationData))
-                extras.putString("SeatsRemaining", itemView.findViewById(R.id.NumberOfRemainingSeats))
-                intent.putExtras(extras)
-                itemView.context.startActivity(intent)
-            }
-
+        itemView.setOnClickListener{
+            action.onItemClick(item,adapterPosition)
         }
+
     }
+}
+
+interface onItemClickListener{
+    fun onItemClick(item: Movie, position: Int)
 }

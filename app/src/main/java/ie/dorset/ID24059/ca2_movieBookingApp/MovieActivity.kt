@@ -37,7 +37,6 @@ class MovieActivity : AppCompatActivity() {
             val duration = extras.getString("Duration")
             val seatsRem = extras.getString("SeatsRemaining")
 
-            selectedMovieImage.ImageView = img
         }
     }
 }
